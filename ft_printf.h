@@ -6,7 +6,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <limits.h>
-# include "libft.h"
+# include "libft/libft.h"
 
 void	ft_putuint(unsigned int n);
 int		num_len(long long num);
