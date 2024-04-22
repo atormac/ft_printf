@@ -6,7 +6,7 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:47:24 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/22 18:31:33 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/22 18:59:37 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,8 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <unistd.h>
+#include <limits.h>
 #include "libft.h"
-
-void	write_str(char *s)
-{
-	while (*s)
-		write(1, s++, 1);
-}
 
 int	count_args(const char *f)
 {
@@ -38,6 +33,16 @@ int	count_args(const char *f)
 	return (count);
 }
 
+void	print_uint(unsigned int n)
+{
+	unsigned int num;
+
+	num = n;
+	if (num >= 10)
+		ft_putnbr_fd(num / 10, 1);
+	ft_putchar_fd('0' + (num % 10), 1);
+}
+
 void	format_print(va_list ap, const char *f)
 {
 	if (*f == 'c')
@@ -48,14 +53,16 @@ void	format_print(va_list ap, const char *f)
 		ft_putstr_fd(va_arg(ap, char*), 1);
 	else if (*f == 'd' || *f == 'i')
 		ft_putnbr_fd(va_arg(ap, int), 1);
+	else if (*f == 'u')
+		print_uint(va_arg(ap, unsigned int));
 }
 int ft_printf(const char *f, ...)
 {
 	va_list ap;
-	int	arg_count;
+	int	count_printed;
 
-	arg_count = count_args(f);
 	va_start(ap, f);
+	count_printed = 0;
 	while (*f)
 	{
 		if (*f == '%')
@@ -64,20 +71,23 @@ int ft_printf(const char *f, ...)
 			format_print(ap, f);
 		}
 		else
+		{
 			ft_putchar_fd(*f, 1);
+			count_printed++;
+		}
 		f++;
 	}
 	va_end(ap);
-	return (0);
+	return (count_printed);
 }
 
 int main(void)
 {
 	void *p = format_print;
 
-	ft_printf("format: %%, %s, %c, %s, %d, %i\n", "str", 'b', "second", 12345, 123);
+	ft_printf("format: %%, %s, %c, %s, %d, %i, %u\n", "str", 'b', "second", 12345, 123, UINT_MAX);
 	ft_printf("no args\n");
 	write(1, "\n", 1);
-	printf("format: %%, %s, %c, %s, %d, %i, %p\n", "str", 'b', "second", 12345, 123, p);
+	printf("format: %%, %s, %c, %s, %d, %i, %u\n", "str", 'b', "second", 12345, 123, UINT_MAX);
 	return (0);
 }
