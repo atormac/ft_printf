@@ -10,12 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <unistd.h>
-#include <limits.h>
-#include "libft.h"
+#include "ft_printf.h"
+
+int print_char(int c);
+int	print_string(char *str);
+int print_integer(int n);
+int	print_uint(unsigned int n);
+int	print_ptr(unsigned long long ptr);
 
 void	ft_putuint(unsigned int n)
 {
@@ -27,7 +28,7 @@ void	ft_putuint(unsigned int n)
 	ft_putchar_fd('0' + (num % 10), 1);
 }
 
-int	ft_int_len(long long num)
+int	num_len(long long num)
 {
 	int	length;
 
@@ -43,59 +44,6 @@ int	ft_int_len(long long num)
 		length++;
 	}
 	return (length);
-}
-int print_char(int c)
-{
-	ft_putchar_fd(c, 1);
-	return (1);
-}
-
-int	print_string(char *str)
-{
-	int	len;
-
-	len = ft_strlen(str);
-	ft_putstr_fd(str, 1);
-	return (len);
-}
-
-int print_integer(int n)
-{
-	ft_putnbr_fd(n, 1);
-	return (ft_int_len(n));
-}
-
-int	print_uint(unsigned int n)
-{
-	ft_putuint(n);
-	return (ft_int_len(n));
-}
-
-int	print_hex(int n, int is_lower)
-{
-	int		i;
-	char	tmp;
-	char	result[32];
-
-	i = 0;
-	while (n != 0)
-	{
-		tmp = n % 16;
-		if ((n % 16) < 10)
-			tmp += 48;
-		else
-			tmp += 55;
-		result[i++] = tmp;
-		n /= 16;
-
-	}
-	while (i-- > 0)
-	{
-		if (is_lower)
-			result[i] = ft_tolower(result[i]);
-		write(1, &result[i], 1);
-	}
-	return (0);
 }
 
 int	format_print(va_list ap, const char *f)
@@ -117,6 +65,8 @@ int	format_print(va_list ap, const char *f)
 		counter += print_hex(va_arg(ap, int), 1);
 	else if (*f == 'X')
 		counter += print_hex(va_arg(ap, int), 0);
+	else if (*f == 'p')
+		counter += print_ptr(va_arg(ap, unsigned long long));
 	return (counter);
 }
 
@@ -149,10 +99,10 @@ int main(void)
 {
 	void *p = format_print;
 
-	int counter = ft_printf("format: %%, %s, %c, %d, %i, %u, %X\n", "str", 'b', 12345, 123, UINT_MAX, 12416782);
+	int counter = ft_printf("format: %%, %s, %c, %d, %i, %u, %X, %p\n", "str", 'b', 12345, -123, UINT_MAX, -12416782, p);
 	ft_printf("counter: %d\n", counter);
 	write(1, "\n", 1);
-	int printf_counter = printf("format: %%, %s, %c, %d, %i, %u, %X\n", "str", 'b', 12345, 123, UINT_MAX, 12416782);
+	int printf_counter = printf("format: %%, %s, %c, %d, %i, %u, %X, %p\n", "str", 'b', 12345, -123, UINT_MAX, -12416782, p);
 	printf("printf_counter: %d\n", printf_counter);
 	return (0);
 }
