@@ -12,12 +12,6 @@
 
 #include "ft_printf.h"
 
-int print_char(int c);
-int	print_string(char *str);
-int print_integer(int n);
-int	print_uint(unsigned int n);
-int	print_ptr(unsigned long long ptr);
-
 void	ft_putuint(unsigned int n)
 {
 	unsigned int num;

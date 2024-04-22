@@ -1,9 +1,6 @@
 
 #include "ft_printf.h"
 
-void	ft_putuint(unsigned int n);
-int		num_len(long long num);
-
 int print_char(int c)
 {
 	ft_putchar_fd(c, 1);
