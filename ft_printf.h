@@ -10,5 +10,6 @@
 
 int	print_hex(unsigned int n, int is_lower);
 int	print_hex_ptr(unsigned long long n);
+int ft_printf(const char *, ...);
 
 #endif
