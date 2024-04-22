@@ -6,7 +6,7 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:47:24 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/22 19:28:31 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/22 20:33:29 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <limits.h>
 #include "libft.h"
 
-void	print_uint(unsigned int n)
+void	ft_putuint(unsigned int n)
 {
 	unsigned int num;
 
@@ -65,6 +65,39 @@ int print_integer(int n)
 	return (ft_int_len(n));
 }
 
+int	print_uint(unsigned int n)
+{
+	ft_putuint(n);
+	return (ft_int_len(n));
+}
+
+int	print_hex(int n, int is_lower)
+{
+	int		i;
+	char	tmp;
+	char	result[32];
+
+	i = 0;
+	while (n != 0)
+	{
+		tmp = n % 16;
+		if ((n % 16) < 10)
+			tmp += 48;
+		else
+			tmp += 55;
+		result[i++] = tmp;
+		n /= 16;
+
+	}
+	while (i-- > 0)
+	{
+		if (is_lower)
+			result[i] = ft_tolower(result[i]);
+		write(1, &result[i], 1);
+	}
+	return (0);
+}
+
 int	format_print(va_list ap, const char *f)
 {
 	int	counter;
@@ -79,7 +112,11 @@ int	format_print(va_list ap, const char *f)
 	else if (*f == 'd' || *f == 'i')
 		counter += print_integer(va_arg(ap, int));
 	else if (*f == 'u')
-		print_uint(va_arg(ap, unsigned int));
+		counter += print_uint(va_arg(ap, unsigned int));
+	else if (*f == 'x')
+		counter += print_hex(va_arg(ap, int), 1);
+	else if (*f == 'X')
+		counter += print_hex(va_arg(ap, int), 0);
 	return (counter);
 }
 
@@ -112,10 +149,10 @@ int main(void)
 {
 	void *p = format_print;
 
-	int counter = ft_printf("format: %%, %s, %c, %s, %d, %i, %u\n", "str", 'b', "second", 12345, 123, UINT_MAX);
+	int counter = ft_printf("format: %%, %s, %c, %d, %i, %u, %X\n", "str", 'b', 12345, 123, UINT_MAX, 12416782);
 	ft_printf("counter: %d\n", counter);
 	write(1, "\n", 1);
-	int printf_counter = printf("format: %%, %s, %c, %s, %d, %i, %u\n", "str", 'b', "second", 12345, 123, UINT_MAX);
+	int printf_counter = printf("format: %%, %s, %c, %d, %i, %u, %X\n", "str", 'b', 12345, 123, UINT_MAX, 12416782);
 	printf("printf_counter: %d\n", printf_counter);
 	return (0);
 }
