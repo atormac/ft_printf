@@ -6,7 +6,7 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:47:24 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/22 20:33:29 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/26 14:46:48 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	num_len(long long num)
 	return (length);
 }
 
-int	format_print(va_list ap, const char *f)
+static int	format_print(va_list ap, const char *f)
 {
 	int	counter;
 
@@ -64,7 +64,7 @@ int	format_print(va_list ap, const char *f)
 	return (counter);
 }
 
-int ft_printf(const char *f, ...)
+int	ft_printf(const char *f, ...)
 {
 	va_list ap;
 	int		counter;
@@ -88,4 +88,3 @@ int ft_printf(const char *f, ...)
 	va_end(ap);
 	return (counter);
 }
-
