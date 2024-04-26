@@ -30,6 +30,16 @@ int	print_hex(unsigned int n, int is_lower)
 	return (counter);
 }
 
+int	hex_uint(unsigned int n, int is_lower)
+{
+	if (n == 0)
+	{
+		ft_putchar_fd('0', 1);
+		return (1);
+	}
+	return (print_hex(n, is_lower));
+}
+
 int	print_hex_ptr(unsigned long long n)
 {
 	int		i;

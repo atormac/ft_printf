@@ -6,11 +6,13 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:47:24 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/26 14:51:25 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/26 15:36:44 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	hex_uint(unsigned int n, int is_lower);
 
 void	ft_putuint(unsigned int n)
 {
@@ -56,9 +58,9 @@ static int	format_print(va_list ap, const char *f)
 	else if (*f == 'u')
 		counter += print_uint(va_arg(ap, unsigned int));
 	else if (*f == 'x')
-		counter += print_hex(va_arg(ap, int), 1);
+		counter += hex_uint(va_arg(ap, int), 1);
 	else if (*f == 'X')
-		counter += print_hex(va_arg(ap, int), 0);
+		counter += hex_uint(va_arg(ap, int), 0);
 	else if (*f == 'p')
 		counter += print_ptr(va_arg(ap, unsigned long long));
 	return (counter);
