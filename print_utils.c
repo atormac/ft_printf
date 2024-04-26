@@ -6,7 +6,7 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 14:47:00 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/26 14:47:05 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/26 15:13:09 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ int print_char(int c)
 
 int	print_string(char *str)
 {
+	if (!str)
+	{
+		ft_putstr_fd("(null)", 1);
+		return (6);
+	}
 	ft_putstr_fd(str, 1);
 	return (ft_strlen(str));
 }
