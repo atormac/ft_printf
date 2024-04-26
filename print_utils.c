@@ -6,13 +6,13 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 14:47:00 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/26 15:21:20 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/26 15:45:46 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int print_char(int c)
+int	print_char(int c)
 {
 	ft_putchar_fd(c, 1);
 	return (1);
@@ -29,7 +29,7 @@ int	print_string(char *str)
 	return (ft_strlen(str));
 }
 
-int print_integer(int n)
+int	print_integer(int n)
 {
 	ft_putnbr_fd(n, 1);
 	return (num_len(n));
@@ -49,5 +49,5 @@ int	print_ptr(unsigned long long ptr)
 		ft_putchar_fd('0', 1);
 		return (3);
 	}
-	return print_hex_ptr(ptr) + 2;
+	return (print_hex_ptr(ptr) + 2);
 }

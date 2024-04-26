@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hex.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/26 15:47:00 by atorma            #+#    #+#             */
+/*   Updated: 2024/04/26 15:47:30 by atorma           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
@@ -18,7 +29,6 @@ int	print_hex(unsigned int n, int is_lower)
 			tmp += 55;
 		result[i++] = tmp;
 		n /= 16;
-
 	}
 	counter = i;
 	while (i-- > 0)
@@ -57,7 +67,6 @@ int	print_hex_ptr(unsigned long long n)
 			tmp += 55;
 		result[i++] = tmp;
 		n /= 16;
-
 	}
 	counter = i;
 	while (i-- > 0)

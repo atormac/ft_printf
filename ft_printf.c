@@ -6,7 +6,7 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:47:24 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/26 15:36:44 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/26 15:46:42 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	hex_uint(unsigned int n, int is_lower);
 
 void	ft_putuint(unsigned int n)
 {
-	unsigned int num;
+	unsigned int	num;
 
 	num = n;
 	if (num >= 10)
@@ -52,7 +52,7 @@ static int	format_print(va_list ap, const char *f)
 	else if (*f == '%')
 		counter += print_char('%');
 	else if (*f == 's')
-		counter += print_string(va_arg(ap, char*));
+		counter += print_string(va_arg(ap, char *));
 	else if (*f == 'd' || *f == 'i')
 		counter += print_integer(va_arg(ap, int));
 	else if (*f == 'u')
@@ -68,7 +68,7 @@ static int	format_print(va_list ap, const char *f)
 
 int	ft_printf(const char *f, ...)
 {
-	va_list ap;
+	va_list	ap;
 	int		counter;
 
 	va_start(ap, f);
