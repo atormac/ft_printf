@@ -6,7 +6,7 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 14:47:00 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/26 15:13:09 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/26 15:21:20 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,10 @@ int	print_uint(unsigned int n)
 int	print_ptr(unsigned long long ptr)
 {
 	ft_putstr_fd("0x", 1);
+	if (ptr == 0)
+	{
+		ft_putchar_fd('0', 1);
+		return (3);
+	}
 	return print_hex_ptr(ptr) + 2;
 }
