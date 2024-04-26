@@ -6,7 +6,7 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:47:24 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/26 14:46:48 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/26 14:51:25 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	ft_printf(const char *f, ...)
 	counter = 0;
 	while (*f)
 	{
-		if (*f == '%')
+		if (*f == '%' && ft_strchr("cspdiuxX%", *(f + 1)))
 		{
 			f++;
 			counter += format_print(ap, f);
