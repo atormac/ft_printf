@@ -6,7 +6,7 @@
 #    By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/30 17:26:34 by atorma            #+#    #+#              #
-#    Updated: 2024/04/30 17:26:36 by atorma           ###   ########.fr        #
+#    Updated: 2024/04/30 17:43:57 by atorma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,14 +20,12 @@ LIBDIR= ./libft
 all: $(NAME)
 
 $(NAME): libft $(OBJECTS)
-	ar -r $(NAME) $(OBJECTS)
+	$(MAKE) -C $(LIBDIR)
+	cp $(LIBDIR)/libft.a $(NAME)
+	ar rcs $(NAME) $(OBJECTS)
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $?
-
-libft:
-	$(MAKE) -C $(LIBDIR)
-	cp $(LIBDIR)/libft.a $(NAME)
 
 clean:
 	$(MAKE) -C $(LIBDIR) $@
@@ -38,4 +36,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all libft clean fclean re
+.PHONY: all clean fclean re
