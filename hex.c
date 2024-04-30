@@ -6,13 +6,13 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:47:00 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/30 15:03:39 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/30 16:09:38 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_hex(struct write_state *ws, unsigned int n, int is_lower)
+void	print_hex(struct t_write_state *ws, unsigned int n, int is_lower)
 {
 	int		i;
 	char	tmp;
@@ -37,7 +37,7 @@ void	print_hex(struct write_state *ws, unsigned int n, int is_lower)
 	}
 }
 
-void	hex_uint(struct write_state *ws, unsigned int n, int is_lower)
+void	hex_uint(struct t_write_state *ws, unsigned int n, int is_lower)
 {
 	if (n == 0)
 	{
@@ -47,7 +47,7 @@ void	hex_uint(struct write_state *ws, unsigned int n, int is_lower)
 	print_hex(ws, n, is_lower);
 }
 
-void	print_hex_ptr(struct write_state *ws, unsigned long long n)
+void	print_hex_ptr(struct t_write_state *ws, unsigned long long n)
 {
 	int		i;
 	char	tmp;

@@ -6,13 +6,13 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 14:47:00 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/30 14:52:37 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/30 16:09:07 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_char(struct write_state *ws, int c)
+void	print_char(struct t_write_state *ws, int c)
 {
 	char p;
 
@@ -20,7 +20,7 @@ void	print_char(struct write_state *ws, int c)
 	return (ft_write(ws, &p, 1));
 }
 
-void	print_string(struct write_state *ws, char *str)
+void	print_string(struct t_write_state *ws, char *str)
 {
 	if (!str)
 	{
@@ -30,7 +30,7 @@ void	print_string(struct write_state *ws, char *str)
 	ft_write(ws, str, ft_strlen(str));
 }
 
-void	print_integer(struct write_state *ws, int n)
+void	print_integer(struct t_write_state *ws, int n)
 {
 	long long	num;
 	char		c;
@@ -48,7 +48,7 @@ void	print_integer(struct write_state *ws, int n)
 	ft_write(ws, &c, 1);
 }
 
-void	print_unsigned(struct write_state *ws, unsigned int n)
+void	print_unsigned(struct t_write_state *ws, unsigned int n)
 {
 	unsigned long	num;
 	char		c;
@@ -66,7 +66,7 @@ void	print_unsigned(struct write_state *ws, unsigned int n)
 	ft_write(ws, &c, 1);
 }
 
-void print_ptr(struct write_state *ws, unsigned long long ptr)
+void print_ptr(struct t_write_state *ws, unsigned long long ptr)
 {
 	print_string(ws, "0x");
 	if (ptr == 0)

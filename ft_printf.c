@@ -6,13 +6,13 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:47:24 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/30 15:08:14 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/30 16:10:25 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	format_print(struct write_state *ws, va_list ap, const char *f)
+static void	format_print(struct t_write_state *ws, va_list ap, const char *f)
 {
 	if (*f == 'c')
 		print_char(ws, va_arg(ap, int));
@@ -35,7 +35,7 @@ static void	format_print(struct write_state *ws, va_list ap, const char *f)
 int	ft_printf(const char *f, ...)
 {
 	va_list	ap;
-	struct	write_state ws;
+	struct	t_write_state ws;
 
 	ws.bytes_written = 0;
 	ws.ret_val = 0;
