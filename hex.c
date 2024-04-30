@@ -6,7 +6,7 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:47:00 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/30 16:09:38 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/30 16:12:35 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	hex_uint(struct t_write_state *ws, unsigned int n, int is_lower)
 	if (n == 0)
 	{
 		print_char(ws, '0');
-		return;
+		return ;
 	}
 	print_hex(ws, n, is_lower);
 }

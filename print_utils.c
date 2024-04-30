@@ -6,7 +6,7 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 14:47:00 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/30 16:09:07 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/30 16:12:16 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_char(struct t_write_state *ws, int c)
 {
-	char p;
+	char	p;
 
 	p = c;
 	return (ft_write(ws, &p, 1));
@@ -25,7 +25,7 @@ void	print_string(struct t_write_state *ws, char *str)
 	if (!str)
 	{
 		ft_write(ws, "(null)", sizeof("(null)") - 1);
-		return;
+		return ;
 	}
 	ft_write(ws, str, ft_strlen(str));
 }
@@ -51,7 +51,7 @@ void	print_integer(struct t_write_state *ws, int n)
 void	print_unsigned(struct t_write_state *ws, unsigned int n)
 {
 	unsigned long	num;
-	char		c;
+	char			c;
 
 	num = n;
 	if (num < 0)
@@ -66,13 +66,13 @@ void	print_unsigned(struct t_write_state *ws, unsigned int n)
 	ft_write(ws, &c, 1);
 }
 
-void print_ptr(struct t_write_state *ws, unsigned long long ptr)
+void	print_ptr(struct t_write_state *ws, unsigned long long ptr)
 {
 	print_string(ws, "0x");
 	if (ptr == 0)
 	{
 		print_char(ws, '0');
-		return;
+		return ;
 	}
 	print_hex_ptr(ws, ptr);
 }
