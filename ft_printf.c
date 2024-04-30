@@ -6,7 +6,7 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:47:24 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/30 14:55:43 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/30 15:08:14 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	ft_printf(const char *f, ...)
 	va_list	ap;
 	struct	write_state ws;
 
-	va_start(ap, f);
 	ws.bytes_written = 0;
 	ws.ret_val = 0;
+	va_start(ap, f);
 	while (*f)
 	{
 		if (*f == '%' && ft_strchr("cspdiuxX%", *(f + 1)))
