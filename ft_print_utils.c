@@ -54,14 +54,8 @@ void	print_unsigned(struct t_write_state *ws, unsigned int n)
 	char			c;
 
 	num = n;
-	if (num < 0)
-	{
-		c = '-';
-		ft_write(ws, &c, 1);
-		num *= -1;
-	}
 	if (num >= 10)
-		print_integer(ws, num / 10);
+		print_unsigned(ws, num / 10);
 	c = '0' + (num % 10);
 	ft_write(ws, &c, 1);
 }
