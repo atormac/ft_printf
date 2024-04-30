@@ -6,7 +6,7 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:17:02 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/30 16:17:07 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/30 16:39:36 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	print_char(struct t_write_state *ws, int c)
 	char	p;
 
 	p = c;
-	return (ft_write(ws, &p, 1));
+	ft_write(ws, &p, 1);
 }
 
 void	print_string(struct t_write_state *ws, char *str)

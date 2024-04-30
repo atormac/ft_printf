@@ -6,7 +6,7 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:47:24 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/30 16:10:25 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/30 16:31:36 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ static void	format_print(struct t_write_state *ws, va_list ap, const char *f)
 
 int	ft_printf(const char *f, ...)
 {
-	va_list	ap;
-	struct	t_write_state ws;
+	va_list					ap;
+	struct t_write_state	ws;
 
 	ws.bytes_written = 0;
 	ws.ret_val = 0;
@@ -48,9 +48,9 @@ int	ft_printf(const char *f, ...)
 			format_print(&ws, ap, f);
 		}
 		else
-			ft_write(&ws, (char*)f, 1);
+			ft_write(&ws, (char *)f, 1);
 		if (ws.ret_val == -1)
-			break;
+			break ;
 		f++;
 	}
 	va_end(ap);
