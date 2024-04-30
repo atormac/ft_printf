@@ -1,7 +1,7 @@
 NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SOURCES = ft_printf.c print_utils.c hex.c ft_write.c
+SOURCES = ft_printf.c ft_print_utils.c ft_hex.c ft_write.c
 OBJECTS = $(SOURCES:.c=.o)
 LIBDIR= ./libft
 
