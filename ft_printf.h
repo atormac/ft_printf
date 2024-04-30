@@ -6,14 +6,13 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 14:44:32 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/30 16:46:05 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/30 16:47:46 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <stdlib.h>
 # include <stdarg.h>
 # include <unistd.h>
 # include "libft/libft.h"
