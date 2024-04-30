@@ -6,7 +6,7 @@
 #    By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/30 17:26:34 by atorma            #+#    #+#              #
-#    Updated: 2024/04/30 17:43:57 by atorma           ###   ########.fr        #
+#    Updated: 2024/04/30 17:45:58 by atorma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LIBDIR= ./libft
 
 all: $(NAME)
 
-$(NAME): libft $(OBJECTS)
+$(NAME): $(OBJECTS)
 	$(MAKE) -C $(LIBDIR)
 	cp $(LIBDIR)/libft.a $(NAME)
 	ar rcs $(NAME) $(OBJECTS)
