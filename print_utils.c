@@ -6,48 +6,73 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 14:47:00 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/26 15:45:46 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/30 14:52:37 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_char(int c)
+void	print_char(struct write_state *ws, int c)
 {
-	ft_putchar_fd(c, 1);
-	return (1);
+	char p;
+
+	p = c;
+	return (ft_write(ws, &p, 1));
 }
 
-int	print_string(char *str)
+void	print_string(struct write_state *ws, char *str)
 {
 	if (!str)
 	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
+		ft_write(ws, "(null)", sizeof("(null)") - 1);
+		return;
 	}
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
+	ft_write(ws, str, ft_strlen(str));
 }
 
-int	print_integer(int n)
+void	print_integer(struct write_state *ws, int n)
 {
-	ft_putnbr_fd(n, 1);
-	return (num_len(n));
+	long long	num;
+	char		c;
+
+	num = n;
+	if (num < 0)
+	{
+		c = '-';
+		ft_write(ws, &c, 1);
+		num *= -1;
+	}
+	if (num >= 10)
+		print_integer(ws, num / 10);
+	c = '0' + (num % 10);
+	ft_write(ws, &c, 1);
 }
 
-int	print_uint(unsigned int n)
+void	print_unsigned(struct write_state *ws, unsigned int n)
 {
-	ft_putuint(n);
-	return (num_len(n));
+	unsigned long	num;
+	char		c;
+
+	num = n;
+	if (num < 0)
+	{
+		c = '-';
+		ft_write(ws, &c, 1);
+		num *= -1;
+	}
+	if (num >= 10)
+		print_integer(ws, num / 10);
+	c = '0' + (num % 10);
+	ft_write(ws, &c, 1);
 }
 
-int	print_ptr(unsigned long long ptr)
+void print_ptr(struct write_state *ws, unsigned long long ptr)
 {
-	ft_putstr_fd("0x", 1);
+	print_string(ws, "0x");
 	if (ptr == 0)
 	{
-		ft_putchar_fd('0', 1);
-		return (3);
+		print_char(ws, '0');
+		return;
 	}
-	return (print_hex_ptr(ptr) + 2);
+	print_hex_ptr(ws, ptr);
 }

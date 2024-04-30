@@ -6,23 +6,14 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:47:24 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/26 15:46:42 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/30 14:49:28 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	hex_uint(unsigned int n, int is_lower);
 
-void	ft_putuint(unsigned int n)
-{
-	unsigned int	num;
 
-	num = n;
-	if (num >= 10)
-		ft_putnbr_fd(num / 10, 1);
-	ft_putchar_fd('0' + (num % 10), 1);
-}
 
 int	num_len(long long num)
 {
@@ -42,51 +33,50 @@ int	num_len(long long num)
 	return (length);
 }
 
-static int	format_print(va_list ap, const char *f)
+static void	format_print(struct write_state *ws, va_list ap, const char *f)
 {
-	int	counter;
-
-	counter = 0;
 	if (*f == 'c')
-		counter += print_char(va_arg(ap, int));
+		print_char(ws, va_arg(ap, int));
 	else if (*f == '%')
-		counter += print_char('%');
+		print_char(ws, '%');
 	else if (*f == 's')
-		counter += print_string(va_arg(ap, char *));
+		print_string(ws, va_arg(ap, char *));
 	else if (*f == 'd' || *f == 'i')
-		counter += print_integer(va_arg(ap, int));
+		print_integer(ws, va_arg(ap, int));
 	else if (*f == 'u')
-		counter += print_uint(va_arg(ap, unsigned int));
+		print_unsigned(ws, va_arg(ap, unsigned int));
 	else if (*f == 'x')
-		counter += hex_uint(va_arg(ap, int), 1);
+		hex_uint(ws, va_arg(ap, int), 1);
 	else if (*f == 'X')
-		counter += hex_uint(va_arg(ap, int), 0);
+		hex_uint(ws, va_arg(ap, int), 0);
 	else if (*f == 'p')
-		counter += print_ptr(va_arg(ap, unsigned long long));
-	return (counter);
+		print_ptr(ws, va_arg(ap, unsigned long long));
 }
+
 
 int	ft_printf(const char *f, ...)
 {
 	va_list	ap;
-	int		counter;
+	struct	write_state ws;
 
 	va_start(ap, f);
-	counter = 0;
+	ws.bytes_written = 0;
+	ws.ret_val = 0;
 	while (*f)
 	{
 		if (*f == '%' && ft_strchr("cspdiuxX%", *(f + 1)))
 		{
 			f++;
-			counter += format_print(ap, f);
+			format_print(&ws, ap, f);
 		}
 		else
-		{
-			ft_putchar_fd(*f, 1);
-			counter++;
-		}
+			ft_write(&ws, (char*)f, 1);
+		if (ws.ret_val == -1)
+			break;
 		f++;
 	}
 	va_end(ap);
-	return (counter);
+	if (ws.ret_val == -1)
+		return (-1);
+	return (ws.bytes_written);
 }
