@@ -6,7 +6,7 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:23:30 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/30 16:47:56 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/30 17:19:04 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_write(struct t_write_state *ws, char *buf, size_t buf_size)
 {
-	size_t	ret;
+	ssize_t	ret;
 
 	if (buf_size == 0 || ws->ret_val == -1)
 		return ;
