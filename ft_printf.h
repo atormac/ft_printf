@@ -6,7 +6,7 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 14:44:32 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/30 14:53:10 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/30 14:54:33 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct write_state
 
 void	ft_write(struct write_state *ws, char *buf, size_t buf_size);
 void	ft_putuint(unsigned int n);
-int		num_len(long long num);
 void	print_char(struct write_state *ws, int c);
 void	print_string(struct write_state *ws, char *str);
 void	print_integer(struct write_state *ws, int n);

@@ -6,32 +6,11 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:47:24 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/30 14:49:28 by atorma           ###   ########.fr       */
+/*   Updated: 2024/04/30 14:55:43 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-
-
-
-int	num_len(long long num)
-{
-	int	length;
-
-	length = 1;
-	if (num < 0)
-	{
-		length++;
-		num *= -1;
-	}
-	while (num >= 10)
-	{
-		num /= 10;
-		length++;
-	}
-	return (length);
-}
 
 static void	format_print(struct write_state *ws, va_list ap, const char *f)
 {
@@ -52,7 +31,6 @@ static void	format_print(struct write_state *ws, va_list ap, const char *f)
 	else if (*f == 'p')
 		print_ptr(ws, va_arg(ap, unsigned long long));
 }
-
 
 int	ft_printf(const char *f, ...)
 {
