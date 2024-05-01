@@ -6,7 +6,7 @@
 /*   By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:47:24 by atorma            #+#    #+#             */
-/*   Updated: 2024/04/30 17:26:50 by atorma           ###   ########.fr       */
+/*   Updated: 2024/05/01 12:50:41 by atorma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static void	format_print(struct t_write_state *ws, va_list ap, const char *f)
 	else if (*f == 'u')
 		print_unsigned(ws, va_arg(ap, unsigned int));
 	else if (*f == 'x')
-		hex_uint(ws, va_arg(ap, int), 1);
+		hex_uint(ws, va_arg(ap, unsigned int), 1);
 	else if (*f == 'X')
-		hex_uint(ws, va_arg(ap, int), 0);
+		hex_uint(ws, va_arg(ap, unsigned int), 0);
 	else if (*f == 'p')
 		print_ptr(ws, va_arg(ap, unsigned long long));
 }

@@ -6,13 +6,13 @@
 #    By: atorma <atorma@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/30 17:26:34 by atorma            #+#    #+#              #
-#    Updated: 2024/04/30 17:45:58 by atorma           ###   ########.fr        #
+#    Updated: 2024/05/01 12:52:16 by atorma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror 
 SOURCES = ft_printf.c ft_print_utils.c ft_hex.c ft_write.c
 OBJECTS = $(SOURCES:.c=.o)
 LIBDIR= ./libft
